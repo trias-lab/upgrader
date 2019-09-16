@@ -1,0 +1,70 @@
+operation2019/09/07 18:10:35 logger.go:36: apt-get update cmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:98: exec faild: apt-get update 
+operation2019/09/07 18:10:35 logger.go:99: ------------------info-------------------------
+operation2019/09/07 18:10:35 logger.go:36: apt-get install -y openssl python3-pip 8lab-zeromq4 cmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:98: exec faild: apt-get install  
+operation2019/09/07 18:10:35 logger.go:99: ------------------info-------------------------
+operation2019/09/07 18:10:35 logger.go:36: pip3 install -r requirements.txt cmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:98: exec faild: pip3 install 
+operation2019/09/07 18:10:35 logger.go:99: ------------------info-------------------------
+operation2019/09/07 18:10:35 logger.go:36: tar zxvf /trias.tar.gzcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:98: exec faild: get trias base config faild 
+operation2019/09/07 18:10:35 logger.go:99: ------------------info-------------------------
+operation2019/09/07 18:10:35 logger.go:36: tar zxvf /trias.tar.gzcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:98: exec faild: tar zxvf  
+operation2019/09/07 18:10:35 logger.go:99: ------------------info-------------------------
+operation2019/09/07 18:10:35 logger.go:36: /usr/sbin/groupadd verfiycmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: /usr/sbin/useradd verfiy -g ubuntu -mcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: tar zxvf /txmodule.tar.gzcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: tar zxvf /attestation.tar.gzcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chown -R ubuntu:ubuntu /triascmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chown -R verfiy:root /8labcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chmod +x /usr/local/bin/tendermintcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chmod +x /usr/local/bin/trias_accscmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chmod +x /usr/local/bin/triascode_appcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chmod +x /8lab/blackboxcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chmod +x /8lab/blackbox_agentcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chown -R verfiy:root /attestationcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: chown -R ubuntu:ubuntu /txmodulecmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: systemctl enable BlackBoxClientinit.servicecmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------
+operation2019/09/07 18:10:35 logger.go:36: systemctl enable Triasinit.servicecmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:38: ------------------fey-------------------------

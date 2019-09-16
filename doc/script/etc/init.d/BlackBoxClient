@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# Quick start-stop-daemon example, for ubuntu/debian
+set -e
+
+NAME1=blackbox
+NAME2=blackbox_agent
+NAME3=attestation
+
+export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+start(){
+    pids1=`ps -e| grep -w $NAME1| awk '{print $1}'`
+    if [ -z "$pids1" ]; then
+        su verfiy -l -c 'nohup /8lab/blackbox -c -s -i 0.0.0.0 -p 5670 -n eth0 >>/8lab/log/blackbox_nohup  2>&1 &'
+        echo "starting $NAME1 ...."
+        sleep 5
+    else
+        echo "$NAME1 has already been started ..."
+    # exit 0
+    fi
+
+    pids2=`ps -e| grep $NAME2| awk '{print $1}'`
+    if [ -z "$pids2" ]; then
+        su verfiy -l -c 'nohup /8lab/blackbox_agent -W -n eth0  >>/8lab/log/blackbox_agent_nohup  2>&1 &'
+        echo "starting $NAME2 ...."
+        sleep 5
+    else
+        echo "$NAME2 has already been started ..."
+    # exit 0
+    fi
+
+    pids3=`ps -ef | grep attestation |grep python3| awk '{print $2}'`
+    if [ -z "$pids3" ]; then
+        su verfiy -l -c 'nohup python3 /attestation/attestation.py >/8lab/log/attest_nohup  2>&1 &'
+        echo "starting $NAME3 ...."
+        sleep 5
+    else
+        echo "$NAME3 has already been started ..."
+    # exit 0
+    fi
+
+}
+stop(){
+    pids2=`ps -e| grep -w $NAME2| awk '{print $1}'`
+    if [ -z "$pids2" ]; then
+        echo "$NAME2 is not running"
+    else
+        sudo kill -9 $pids2
+        echo "stopping $NAME2 ...."
+    fi
+    pids1=`ps -e| grep -w $NAME1| awk '{print $1}'`
+    if [ -z "$pids1" ]; then
+        echo "$NAME1 is not running"
+    else
+        sudo kill -9 $pids1
+        echo "stopping $NAME1 ...."
+    fi
+    pids3=`ps -ef | grep attestation |grep python3| awk '{print $2}'`
+    if [ -z "$pids3" ]; then
+        echo "$NAME3 is not running"
+    else
+        sudo kill -9 $pids3
+        echo "stopping $NAME3 ...."
+    fi
+
+    #killall -9 python3
+    #killall -9 blackbox
+}
+case "$1" in
+    start)
+    start
+    ;;
+    stop)
+    stop
+    ;;
+    restart)
+	echo -n "Restarting server: "$NAME1
+    stop
+    start
+    ;;
+    *)
+        echo "Usage: "$1" {start|stop|restart}"
+        exit 1
+esac
+
+exit 0
+

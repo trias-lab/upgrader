@@ -1,0 +1,12 @@
+[Unit]
+Description=tagent
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/etc/init.d/BlackBoxClient start
+ExecStop=/etc/init.d/BlackBoxClient stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

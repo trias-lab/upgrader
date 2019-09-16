@@ -1,0 +1,124 @@
+#!/bin/bash
+
+# Quick start-stop-daemon example, for ubuntu/debian
+set -e
+
+NAME1=tendermint
+NAME3=triascode_app
+NAME4=trias_accs
+NAME5=txmodule
+
+export PATH="${PATH:+$PATH}:/usr/sbin:/sbin:/usr/local/bin"
+start(){
+
+    pids4=`ps -e| grep $NAME4| awk '{print $1}'`
+    if [ -z "$pids2" ]; then 
+        cd /trias/log
+        su ubuntu -l -c "nohup trias_accs >/trias/log/trias_accs.out 2>&1 &"
+        #nohup listner_peer >/dev/null 2>&1 &
+        echo "starting $NAME4 ...."
+        sleep 1
+    else
+        echo "$NAME2 has already been started ..."
+    # exit 0
+    fi
+
+    pids5=`ps -e| grep $NAME5| awk '{print $1}'`
+    if [ -z "$pids5" ]; then
+        su ubuntu -l -c "nohup python3 /txmodule/main.py >/trias/log/txmodule_nohup  2>&1 &"
+        echo "starting $NAME5 ...."
+        sleep 1
+    else
+        echo "$NAME5 has already been started ..."
+    # exit 0
+    fi
+
+    pids3=`ps -e| grep $NAME3| awk '{print $1}'`
+    if [ -z "$pids3" ]; then
+        cd /trias/log
+        #nohup python3 /attestation/manage.py runserver {{inventory_hostname}}:7458 >>/8lab/log/attest_nohup  2>&1 &
+        #su ubuntu -l -c "ethermint --datadir /trias/.ethermint --rpc --rpcaddr=0.0.0.0 --ws --wsaddr=0.0.0.0 --rpcapi eth,net,web3,personal,admin  >/trias/log/em-nohup.out 2>&1 &"
+        su ubuntu -l -c "triascode_app -persist /trias/.ethermint/tendermint/data  >/trias/log/triascode_app.out 2>&1 &"
+        #nohup triascode_app >/trias/log/triascode_app.out 2>&1 &
+        echo "starting $NAME3 ...."
+        sleep 1
+    else
+        echo "$NAME3 has already been started ..."
+    # exit 0
+    fi
+
+    pids1=`ps -e| grep -w $NAME1| awk '{print $1}'`
+    if [ -z "$pids1" ]; then
+        if [ ! -f /trias/.ethermint/tendermint/priv_validator.json ]
+        then
+            su ubuntu -l -c "tendermint init --home /trias/.ethermint/tendermint"
+        #cp /trias/key/priv_validator.json /trias/.ethermint/tendermint/
+        fi
+        sleep 2
+        cd /trias/log
+        #su ubuntu -l -c "tendermint --home /trias/.ethermint/tendermint node >/trias/log/tm-nohup.out 2>&1 &"
+        su ubuntu -l -c "tendermint --home /trias/.ethermint/tendermint node --log_level *:info --consensus.create_empty_blocks=false >/trias/log/tm-nohup.out 2>&1 &"
+        echo "starting $NAME1 ...."
+        sleep 1
+    else
+        echo "$NAME1 has already been started ..."
+    # exit 0
+    fi
+
+
+
+}
+stop(){
+    pids3=`ps -e| grep  $NAME3| awk '{print $1}'`
+    if [ -z "$pids3" ]; then
+        echo "$NAME3 is not running"
+    else
+        sudo kill -9 $pids3
+        echo "stopping $NAME3 ...."
+    fi
+    pids4=`ps -e| grep  $NAME4| awk '{print $1}'`
+    if [ -z "$pids4" ]; then
+        echo "$NAME4 is not running"
+    else
+        sudo kill -9 $pids4
+        echo "stopping $NAME4 ...."
+    fi
+
+    pids5=`ps -ef| grep  $NAME5|grep python3 | awk '{print $2}'`
+    if [ -z "$pids5" ]; then
+        echo "$NAME5 is not running"
+    else
+        sudo kill -9 $pids5
+        echo "stopping $NAME5 ...."
+    fi
+
+    pids1=`ps -e| grep -w $NAME1| awk '{print $1}'`
+    if [ -z "$pids1" ]; then
+        echo "$NAME1 is not running"
+    else
+        sudo kill -9 $pids1
+        echo "stopping $NAME1 ...."
+    fi
+
+    #killall -9 python3
+    #killall -9 blackbox
+}
+case "$1" in
+    start)
+    start
+    ;;
+    stop)
+    stop
+    ;;
+    restart)
+	echo -n "Restarting server: "$NAME1
+    stop
+    start
+    ;;
+    *)
+        echo "Usage: "$1" {start|stop|restart}"
+        exit 1
+esac
+
+exit 0
+
