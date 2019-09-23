@@ -13,6 +13,7 @@ func helper() {
 	fmt.Printf("|%-6s|%-6s|\n", "check", "--check trias server version at local.")
 	fmt.Printf("|%-6s|%-6s|\n", "ver", "--show the current version .")
 	fmt.Printf("|%-6s|%-6s|\n", "syncdata", "--whether data is synchronized or not.")
+	fmt.Printf("|%-6s|%-6s|\n", "new", "--star the new nodes for trias.")
 
 }
 
@@ -95,6 +96,11 @@ func ver() {
 
 }
 
+func new() {
+
+}
+
+
 func syncdata() {
 	lib.CmdExec(`reboot`)
 
@@ -126,6 +132,10 @@ func main(){
 		}
 		if string(os.Args[1])=="opts"{
 			genesis()
+			fmt.Println("参数:", string(os.Args[1]))
+		}
+		if string(os.Args[1])=="new"{
+			new()
 			fmt.Println("参数:", string(os.Args[1]))
 		}
 	}
