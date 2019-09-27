@@ -37,7 +37,7 @@ To report a security vulnerability,  [bug report](mailto:contact@trias.one)
 
 * Manually build bin and exec.
 
-command args:
+exec command args:
   ./tupgrader  upgrade   
   ./tupgrader  genesis    
   ./tupgrader  check    
@@ -46,6 +46,7 @@ command args:
   ./tupgrader  new   
   ./tupgrader  clean
 
+It is still in use in the test network.
 
   
 | Branch  |           describe                      | 
