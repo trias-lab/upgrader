@@ -47,7 +47,7 @@ exec command args:
   ./tupgrader  clean
 
 It is still in use in the test network.
-You need to download the corresponding version at the actual address.
+You need to download the tupgrader version at the actual address.
   
 | Branch  |           describe                      | 
 | ------- | ----------------------------------------| 
