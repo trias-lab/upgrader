@@ -38,13 +38,13 @@ To report a security vulnerability,  [bug report](mailto:contact@trias.one)
 * Manually build bin and exec.
 
 command args:
-   ./tupgrader  upgrade   
+  ./tupgrader  upgrade   
   ./tupgrader  genesis    
   ./tupgrader  check    
   ./tupgrader  ver    
   ./tupgrader  syncdata    
   ./tupgrader  new   
-
+  ./tupgrader  clean
 
 
   
@@ -63,7 +63,8 @@ command args:
 | ------- | ----------------------------------------| 
 | new     | star the new nodes for trias.           | 
 | ------- | ----------------------------------------| 
-
+| clean   | clean nodes bin and data for trias.     | 
+| ------- | ----------------------------------------| 
 
 # status
 
