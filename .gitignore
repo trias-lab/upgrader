@@ -1,0 +1,5 @@
+/.idea
+/*.log
+### Go Patch ###
+/vendor/*
+!/vendor/vendor.json

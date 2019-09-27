@@ -22,12 +22,10 @@ func PathExists(path string) (bool, error) {
 
 
 func GetBin(wfile string,url string){
-	exist, err := PathExists(ddir)
+	//exist, err := PathExists(ddir)
+	_, err := PathExists(ddir)
 	if err!=nil{
 		LogHander("get dir err!",err)
-		return
-	}
-	if exist{
 		return
 	} else {
 		InfoHander("create dir default is /data/tmp")

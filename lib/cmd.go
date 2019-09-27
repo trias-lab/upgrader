@@ -6,17 +6,41 @@ import (
 	"strings"
 )
 
-func CmdExec(cstr string) string{
-	cmd:=exec.Command(cstr)
+func CmdExec(cstr ...string) string{
+	strs:=""
+	for _, arge:=range cstr  {
+		strs+=arge+" "
+	}
+
+	cmd:=exec.Command(strs)
 
 	err :=cmd.Run()
-	if err!=nil{
-		LogHander(cstr+"cmd exec failed!",err)
+	if err != nil {
+		LogHander(strs+"cmd exec failed!", err)
 		return "failed"
 	}
 	return "sucesss"
 }
 
+func TarZxvf(str string) string {
+	cmd:=exec.Command("tar","zxvf", str,"-C","/")
+	err :=cmd.Run()
+	if err != nil {
+		LogHander("cmd exec failed!", err)
+		return "failed"
+	}
+	return "sucesss"
+}
+
+func Chmod(str string) string {
+	cmd:=exec.Command("tar","zxvf", str,"-C","/")
+	err :=cmd.Run()
+	if err != nil {
+		LogHander("cmd exec failed!", err)
+		return "failed"
+	}
+	return "sucesss"
+}
 
 func AddSource(apts string){
 	df:=os.Remove("/etc/apt/sources.list")
@@ -51,7 +75,7 @@ func SetIma(){
 		if n,err:=fileObj.Read(buf);err==nil{
 			res:=strings.Contains(string(n),"ima_tcb")
 			if res!=true{
-				sc:=CmdExec(`sed -i "/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g" /boot/grub/grub.cfg`)
+				sc:=CmdExec("sed", `-i`, `"/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g"`, `/boot/grub/grub.cfg`)
 				//return sc
 				InfoHander(sc)
 				}
