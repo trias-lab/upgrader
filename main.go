@@ -10,6 +10,7 @@ const soip string ="192.168.1.125"
 const sourl string ="http://192.168.1.125/"
 const dlurl string ="http://192.168.1.125/packs/files/"
 
+//help print
 func helper() {
 	fmt.Printf("|%-6s|%-6s|\n", "upgrade", "--Update trias server to lastest version.")
 	fmt.Printf("|%-6s|%-6s|\n", "genesis", "--Generate basic configuration.")
