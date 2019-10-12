@@ -14,7 +14,7 @@ func Adduser(){
 	if _, err := user.Lookup("verfiy"); err != nil {
 		//var cmd *exec.Cmd
 		CmdExec("/usr/sbin/groupadd", "verfiy")
-		CmdExec("/usr/sbin/useradd verfiy", "-g", "ubuntu", "-m")
+		CmdExec("/usr/sbin/useradd","verfiy", "-g", "verfiy", "-m")
 
 	}
 
