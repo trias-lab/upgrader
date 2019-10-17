@@ -154,7 +154,7 @@ func new() {
 	//add apt and pip source,install and setup packages
 	lib.AddSource(soip)
 	fmt.Println(".........................add source finished.")
-	lib.GetBin("./requirements.txt",sourl+"requirements.txt")
+	lib.GetBin("./requirements.txt",dlurl+"requirements.txt")
 	out:=lib.CmdExec("apt-get", "update")
 	if out !="sucesss" {
 		//fmt.Println(err.Error())
@@ -171,7 +171,9 @@ func new() {
 	}
 	fmt.Println(".........................install packs finished.")
 
-	lib.CmdExec("pip3", "install", "-r", "requirements.txt ")
+	//pip3 install --no-index --trusted-host 192.168.1.125 --find-links=http://{{lab8_apt}}/packs/pypi -r /tmp/requirements.txt
+	plink:="--find-links="+sourl+"/packs/pypi"
+	lib.CmdExec("pip3", "install", "--no-index", "--trusted-host", soip, plink, "-r", "requirements.txt ")
 	if out !="sucesss" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: pip3 install ")
@@ -219,6 +221,7 @@ func new() {
 	lib.GetBin("/8lab/log/pk",dlurl+"pk")
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
+	lib.SetTmHostname()
 	fmt.Println(".........................key bin and set configure finished.")
 
 

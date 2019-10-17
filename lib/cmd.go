@@ -1,8 +1,10 @@
 package lib
 
 import (
+	"io/ioutil"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 )
 
@@ -20,6 +22,27 @@ func CmdExec(cstr ...string) string{
 		return "failed"
 	}
 	return "sucesss"
+}
+
+func CmdStr(cstr ...string) string{
+	strs:=""
+	for _, arge:=range cstr  {
+		strs+=arge+" "
+	}
+
+	cmd:=exec.Command(strs)
+
+	err :=cmd.Start()
+	if err != nil {
+		LogHander(strs+"cmd exec failed!", err)
+		return "failed"
+	}
+	errc:=cmd.Wait()
+	if errc!=nil{
+		LogHander(strs+"cmd exec failed!", errc)
+		return "failed"
+	}
+	return cmd.ProcessState.String()
 }
 
 func TarZxvf(str string) string {
@@ -75,7 +98,7 @@ func SetIma(){
 		if n,err:=fileObj.Read(buf);err==nil{
 			res:=strings.Contains(string(n),"ima_tcb")
 			if res!=true{
-				sc:=CmdExec("sed", `-i`, `"/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g"`, `/boot/grub/grub.cfg`)
+				sc:=CmdExec("sed", `-i`, `"/linux\t/s/$/&`, `ima_tcb`, `ima_template=\"ima\"`, `ima_hash=\"sha1\"/g"`, `/boot/grub/grub.cfg`)
 				//return sc
 				InfoHander(sc)
 				}
@@ -84,4 +107,78 @@ func SetIma(){
 	//return "failed"
 	}
 
+//changes tm config
+func SetTmHostname(){
+	//get the hostname
+	hn:=CmdStr("hostname")
+	//if fileObj,err:=os.Open("/trias/.ethermint/tendermint/config/config.toml");err==nil
+	input,err:=ioutil.ReadFile("/trias/.ethermint/tendermint/config/config.toml")
+	if err!=nil{
+		LogHander("read tm config err: ",err)
+	}
 
+	content:=string(input)
+	newcontent:=strings.Replace(content,"ubt18-trias-dag-141",hn,-1)
+
+	errw:=ioutil.WriteFile("/trias/.ethermint/tendermint/config/config.toml",[]byte(newcontent),0)
+	if errw!=nil{
+		LogHander("wirte tm config err: ",errw)
+	}
+	//lines:=strings.Split(string(input),"\n")
+	//for i,line:=range lines{
+	//	if strings.Contains(line,"ubt18-trias-dag-141"){
+	//		lines[i]=
+	//	}
+	//}
+}
+
+type ReplaceHandle struct {
+	Root    string //根目录
+	OldText string //需要替换的文本
+	NewText string //新的文本
+}
+
+func (h *ReplaceHandle) DoWrok() error {
+	return filepath.Walk(h.Root, h.walkCallback)
+}
+
+func (h ReplaceHandle) walkCallback(path string, f os.FileInfo, err error) error {
+	if err != nil {
+		return err
+	}
+	if f == nil {
+		return nil
+	}
+	if f.IsDir() {
+		//fmt.Pringln("DIR:",path)
+		return nil
+	}
+	//文件类型需要进行过滤
+	buf, err := ioutil.ReadFile(path)
+	if err != nil {
+		//err
+		return err
+	}
+	content := string(buf)
+	//替换
+	newContent := strings.Replace(content, h.OldText, h.NewText, -1)
+	//重新写入
+	ioutil.WriteFile(path, []byte(newContent), 0)
+	return err
+}
+
+//test coding
+//func main() {
+//	flag.Parse()
+//	hd := ReplaceHandle{
+//		Root:    "/trias/.ethermint/tendermint/config/config.toml",
+//		OldText: "ubt18-trias-dag-141",
+//		NewText: "ubt18-trias-dag-142",
+//	}
+//	err := hd.DoWrok()
+//	if err == nil {
+//		fmt.Println("done!")
+//	} else {
+//		fmt.Println("error:", err.Error())
+//	}
+//}
