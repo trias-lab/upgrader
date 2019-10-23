@@ -43,7 +43,7 @@ func upgrade() {
 	fmt.Println(".........................apt-get finished.")
 
 	//lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
-	installOut:=lib.CmdBash("apt-get install -y openssl python3-pip 8lab-zeromq4")
+	installOut:=lib.CmdBash("apt-get install -y libgmp-dev openssl python3-pip 8lab-zeromq4")
 
 	if installOut =="failed" {
 		//fmt.Println(err.Error())
@@ -96,7 +96,7 @@ func upgrade() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -105,7 +105,7 @@ func upgrade() {
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
 	lib.SetTmHostname()
-	lib.GetBin("/trias/p2p/p2p.json",dlurl+"config.toml")
+	lib.GetBin("/trias/p2p/p2p.json",dlurl+"p2p.json")
 
 	fmt.Println(".........................key bin and set configure finished.")
 
@@ -195,7 +195,7 @@ func new() {
 	fmt.Println(".........................apt-get finished.")
 
 	//lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
-	installOut:=lib.CmdBash("apt-get install -y openssl python3-pip 8lab-zeromq4")
+	installOut:=lib.CmdBash("apt-get install -y libgmp-dev openssl python3-pip 8lab-zeromq4")
 
 	if installOut =="failed" {
 		//fmt.Println(err.Error())
@@ -257,7 +257,7 @@ func new() {
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
 	lib.SetTmHostname()
-	lib.GetBin("/trias/p2p/p2p.json",dlurl+"config.toml")
+	lib.GetBin("/trias/p2p/p2p.json",dlurl+"p2p.json")
 
 	fmt.Println(".........................key bin and set configure finished.")
 

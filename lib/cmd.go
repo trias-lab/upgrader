@@ -124,14 +124,15 @@ func SetIma(){
 func SetTmHostname(){
 	//get the hostname
 	//hn:=CmdStr("hostname")
-	hn:=CmdBash("hostname")
+	hn:= strings.Replace(CmdBash("hostname"),"\n","",-1)
 	//if fileObj,err:=os.Open("/trias/.ethermint/tendermint/config/config.toml");err==nil
 	input,err:=ioutil.ReadFile("/trias/.ethermint/tendermint/config/config.toml")
 	if err!=nil{
 		LogHander("read tm config err: ",err)
 	}
 
-	content:=strings.Replace(string(input),"\n","",-1)
+	//content:=strings.Replace(string(input),"\n","",-1)
+	content:=string(input)
 	newcontent:=strings.Replace(content,"ubt18-trias-dag-141",hn,-1)
 
 	errw:=ioutil.WriteFile("/trias/.ethermint/tendermint/config/config.toml",[]byte(newcontent),0)
