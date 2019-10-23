@@ -24,29 +24,40 @@ func helper() {
 //it does not affect local data files at this  Upgrade
 func upgrade() {
 	//clean old bin
-	clean()
+	syncdata()
+	//add user
+	lib.Adduser()
+	fmt.Println(".........................check and star user finished.")
+
 	//add apt and pip source,install and setup packages
 	lib.AddSource(soip)
 	fmt.Println(".........................add source finished.")
-	lib.GetBin("./requirements.txt",sourl+"requirements.txt")
-	out:=lib.CmdExec("apt-get", "update")
-	if out !="sucesss" {
+	lib.GetBin("./requirements.txt",dlurl+"requirements.txt")
+	//out:=lib.CmdExec("apt-get", "update")
+	out:=lib.CmdBash("apt-get update")
+	if out =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: apt-get update ")
 		fmt.Println(".........................apt-get have exception.")
 	}
 	fmt.Println(".........................apt-get finished.")
 
-	lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
-	if out !="sucesss" {
+	//lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
+	installOut:=lib.CmdBash("apt-get install -y openssl python3-pip 8lab-zeromq4")
+
+	if installOut =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: apt-get install  ")
 		fmt.Println(".........................install packs exception.")
 	}
 	fmt.Println(".........................install packs finished.")
 
-	lib.CmdExec("pip3", "install", "-r", "requirements.txt ")
-	if out !="sucesss" {
+	//pip3 install --no-index --trusted-host 192.168.1.125 --find-links=http://{{lab8_apt}}/packs/pypi -r /tmp/requirements.txt
+	plink:=" --find-links="+sourl+"packs/pypi "
+	//lib.CmdExec("pip3", "install", "--no-index", "--trusted-host", soip, plink, "-r", "requirements.txt ")
+	pipyOut:=lib.CmdBash("pip3 install --no-index --trusted-host " + soip + plink + " -r requirements.txt ")
+
+	if pipyOut =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: pip3 install ")
 		fmt.Println(".........................install pip exception.")
@@ -85,7 +96,7 @@ func upgrade() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -93,28 +104,42 @@ func upgrade() {
 	lib.GetBin("/8lab/log/pk",dlurl+"pk")
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
+	lib.SetTmHostname()
+	lib.GetBin("/trias/p2p/p2p.json",dlurl+"config.toml")
+
 	fmt.Println(".........................key bin and set configure finished.")
 
+
 	//change chmod and chown
-	lib.CmdExec("chown", "-R", "ubuntu:ubuntu", "/trias")
-	lib.CmdExec("chown", "-R", "verfiy:root", "/8lab")
-	lib.CmdExec("chmod", " +x ", "/usr/local/bin/tendermint")
-	lib.CmdExec("chmod", " +x ", "/usr/local/bin/trias_accs")
-	lib.CmdExec("chmod", " +x ", "/usr/local/bin/triascode_app")
-	lib.CmdExec("chmod", " +x ", "/8lab/blackbox")
-	lib.CmdExec("chmod", " +x ", "/8lab/blackbox_agent")
-	lib.CmdExec("chown", " -R", " verfiy:root ", "/attestation")
-	lib.CmdExec("chown ", "-R ", "ubuntu:ubuntu", " /txmodule")
+	//lib.CmdExec("chown", "-R", "ubuntu:ubuntu", "/trias")
+	lib.CmdBash("chown -R ubuntu:ubuntu /trias")
+	//lib.CmdExec("chown", "-R", "verfiy:root", "/8lab")
+	lib.CmdBash("chown -R verfiy:root /8lab")
+	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/tendermint")
+	lib.CmdBash("chmod  +x  /usr/local/bin/tendermint")
+	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/trias_accs")
+	lib.CmdBash("chmod  +x  /usr/local/bin/trias_accs")
+	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/triascode_app")
+	lib.CmdBash("chmod  +x  /usr/local/bin/triascode_app")
+	//lib.CmdExec("chmod", " +x ", "/8lab/blackbox")
+	lib.CmdBash("chmod  +x  /8lab/blackbox")
+	//lib.CmdExec("chmod", " +x ", "/8lab/blackbox_agent")
+	lib.CmdBash("chmod  +x  /8lab/blackbox_agent")
+	//lib.CmdExec("chown", " -R", " verfiy:root ", "/attestation")
+	lib.CmdBash("chown  -R  verfiy:root  /attestation")
+	//lib.CmdExec("chown ", "-R ", "ubuntu:ubuntu", " /txmodule")
+	lib.CmdBash("chown -R ubuntu:ubuntu  /txmodule")
 	fmt.Println(".........................change chmod finished.")
 
 	//set start scripts and ima status
-	lib.CmdExec("systemctl", "enable", "BlackBoxClientinit.service")
-	lib.CmdExec("systemctl ", "enable", "Triasinit.service")
+	lib.CmdBash("systemctl enable BlackBoxClientinit.service")
+	lib.CmdBash("systemctl enable Triasinit.service")
 	lib.SetIma()
 	fmt.Println(".........................set start scripts and ima status finished.")
 
 	//return ver status
-	fmt.Println("update trias node setup finish!")
+	fmt.Println("upgrade trias node setup finish!")
+
 }
 
 func opts() {
@@ -126,6 +151,10 @@ func opts() {
 
 //sync data form zero or genesis status
 func genesis() {
+	lib.GetBin("/trias/.ethermint/tendermint/config/genesis.json",dlurl+"genesis.json")
+	lib.SetTmHostname()
+
+	fmt.Println(".........................set genesis finished.")
 
 }
 
@@ -138,10 +167,11 @@ func ver() {
 }
 
 func clean() {
-	rmout:=lib.CmdExec("rm", "-rf", "/8lab", "/trias*", "/var/log/8lab/", "/txmodule*","/attestation*")
-	if rmout !="sucesss" {
+	//rmout:=lib.CmdExec("rm", "-rf", "/8lab", "/trias*", "/var/log/8lab/", "/txmodule*","/attestation*")
+	rmout:=lib.CmdBash("rm -rf /8lab /trias* /var/log/8lab/ /txmodule* /attestation*")
+	if rmout =="failed" {
 		//fmt.Println(err.Error())
-		lib.InfoHander("exec faild: rm -rf  ")
+		lib.InfoHander("exec faild: rm ")
 	}
 	fmt.Println(".........................clean finished.")
 }
@@ -155,16 +185,19 @@ func new() {
 	lib.AddSource(soip)
 	fmt.Println(".........................add source finished.")
 	lib.GetBin("./requirements.txt",dlurl+"requirements.txt")
-	out:=lib.CmdExec("apt-get", "update")
-	if out !="sucesss" {
+	//out:=lib.CmdExec("apt-get", "update")
+	out:=lib.CmdBash("apt-get update")
+	if out =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: apt-get update ")
 		fmt.Println(".........................apt-get have exception.")
 	}
 	fmt.Println(".........................apt-get finished.")
 
-	lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
-	if out !="sucesss" {
+	//lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
+	installOut:=lib.CmdBash("apt-get install -y openssl python3-pip 8lab-zeromq4")
+
+	if installOut =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: apt-get install  ")
 		fmt.Println(".........................install packs exception.")
@@ -172,9 +205,11 @@ func new() {
 	fmt.Println(".........................install packs finished.")
 
 	//pip3 install --no-index --trusted-host 192.168.1.125 --find-links=http://{{lab8_apt}}/packs/pypi -r /tmp/requirements.txt
-	plink:="--find-links="+sourl+"/packs/pypi"
-	lib.CmdExec("pip3", "install", "--no-index", "--trusted-host", soip, plink, "-r", "requirements.txt ")
-	if out !="sucesss" {
+	plink:=" --find-links="+sourl+"/packs/pypi "
+	//lib.CmdExec("pip3", "install", "--no-index", "--trusted-host", soip, plink, "-r", "requirements.txt ")
+	pipyOut:=lib.CmdBash("pip3 install --no-index --trusted-host " + soip + plink + " -r requirements.txt ")
+
+	if pipyOut =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: pip3 install ")
 		fmt.Println(".........................install pip exception.")
@@ -213,7 +248,7 @@ func new() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -222,24 +257,35 @@ func new() {
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
 	lib.SetTmHostname()
+	lib.GetBin("/trias/p2p/p2p.json",dlurl+"config.toml")
+
 	fmt.Println(".........................key bin and set configure finished.")
 
 
 	//change chmod and chown
-	lib.CmdExec("chown", "-R", "ubuntu:ubuntu", "/trias")
-	lib.CmdExec("chown", "-R", "verfiy:root", "/8lab")
-	lib.CmdExec("chmod", " +x ", "/usr/local/bin/tendermint")
-	lib.CmdExec("chmod", " +x ", "/usr/local/bin/trias_accs")
-	lib.CmdExec("chmod", " +x ", "/usr/local/bin/triascode_app")
-	lib.CmdExec("chmod", " +x ", "/8lab/blackbox")
-	lib.CmdExec("chmod", " +x ", "/8lab/blackbox_agent")
-	lib.CmdExec("chown", " -R", " verfiy:root ", "/attestation")
-	lib.CmdExec("chown ", "-R ", "ubuntu:ubuntu", " /txmodule")
+	//lib.CmdExec("chown", "-R", "ubuntu:ubuntu", "/trias")
+	lib.CmdBash("chown -R ubuntu:ubuntu /trias")
+	//lib.CmdExec("chown", "-R", "verfiy:root", "/8lab")
+	lib.CmdBash("chown -R verfiy:root /8lab")
+	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/tendermint")
+	lib.CmdBash("chmod  +x  /usr/local/bin/tendermint")
+	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/trias_accs")
+	lib.CmdBash("chmod  +x  /usr/local/bin/trias_accs")
+	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/triascode_app")
+	lib.CmdBash("chmod  +x  /usr/local/bin/triascode_app")
+	//lib.CmdExec("chmod", " +x ", "/8lab/blackbox")
+	lib.CmdBash("chmod  +x  /8lab/blackbox")
+	//lib.CmdExec("chmod", " +x ", "/8lab/blackbox_agent")
+	lib.CmdBash("chmod  +x  /8lab/blackbox_agent")
+	//lib.CmdExec("chown", " -R", " verfiy:root ", "/attestation")
+	lib.CmdBash("chown  -R  verfiy:root  /attestation")
+	//lib.CmdExec("chown ", "-R ", "ubuntu:ubuntu", " /txmodule")
+	lib.CmdBash("chown -R ubuntu:ubuntu  /txmodule")
 	fmt.Println(".........................change chmod finished.")
 
 	//set start scripts and ima status
-	lib.CmdExec("systemctl", "enable", "BlackBoxClientinit.service")
-	lib.CmdExec("systemctl ", "enable", "Triasinit.service")
+	lib.CmdBash("systemctl enable BlackBoxClientinit.service")
+	lib.CmdBash("systemctl enable Triasinit.service")
 	lib.SetIma()
 	fmt.Println(".........................set start scripts and ima status finished.")
 
@@ -249,7 +295,29 @@ func new() {
 
 
 func syncdata() {
-	lib.CmdExec(`reboot`)
+	rmtx:=lib.CmdBash("rm -rf /txmodule/data/* ")
+	if rmtx =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: rm tx data ")
+	}
+	rmtm:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.db ")
+	if rmtm =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: rm tm data ")
+	}
+	rmwal:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.wal ")
+	if rmwal =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: rm wal data ")
+	}
+	fmt.Println(".........................data clean finished.")
+
+	sedstate:=lib.CmdBash(`sed -i 's#\"height\": \"[0-9]*\"#\"height\": \"0\"#' /trias/.ethermint/tendermint/data/priv_validator_state.json  `)
+	if sedstate =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: sed state data ")
+	}
+	fmt.Println(".........................block state  rsync finished.")
 
 }
 

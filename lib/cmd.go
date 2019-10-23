@@ -24,6 +24,18 @@ func CmdExec(cstr ...string) string{
 	return "sucesss"
 }
 
+func CmdBash(cstr string) string{
+	//strs:=""
+
+	out,err:=exec.Command("/bin/bash", "-c", cstr).Output()
+
+	if err != nil {
+		LogHander(cstr+"cmd exec failed!", err)
+		return "failed"
+	}
+	return string(out)
+}
+
 func CmdStr(cstr ...string) string{
 	strs:=""
 	for _, arge:=range cstr  {
@@ -98,7 +110,8 @@ func SetIma(){
 		if n,err:=fileObj.Read(buf);err==nil{
 			res:=strings.Contains(string(n),"ima_tcb")
 			if res!=true{
-				sc:=CmdExec("sed", `-i`, `"/linux\t/s/$/&`, `ima_tcb`, `ima_template=\"ima\"`, `ima_hash=\"sha1\"/g"`, `/boot/grub/grub.cfg`)
+				//sc:=CmdExec("sed", `-i`, `"/linux\t/s/$/&`, `ima_tcb`, `ima_template=\"ima\"`, `ima_hash=\"sha1\"/g"`, `/boot/grub/grub.cfg`)
+				sc:=CmdExec(`sed -i "/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g" /boot/grub/grub.cfg`)
 				//return sc
 				InfoHander(sc)
 				}
@@ -110,14 +123,15 @@ func SetIma(){
 //changes tm config
 func SetTmHostname(){
 	//get the hostname
-	hn:=CmdStr("hostname")
+	//hn:=CmdStr("hostname")
+	hn:=CmdBash("hostname")
 	//if fileObj,err:=os.Open("/trias/.ethermint/tendermint/config/config.toml");err==nil
 	input,err:=ioutil.ReadFile("/trias/.ethermint/tendermint/config/config.toml")
 	if err!=nil{
 		LogHander("read tm config err: ",err)
 	}
 
-	content:=string(input)
+	content:=strings.Replace(string(input),"\n","",-1)
 	newcontent:=strings.Replace(content,"ubt18-trias-dag-141",hn,-1)
 
 	errw:=ioutil.WriteFile("/trias/.ethermint/tendermint/config/config.toml",[]byte(newcontent),0)
