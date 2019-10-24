@@ -9,9 +9,12 @@ import (
 const soip string ="192.168.1.125"
 const sourl string ="http://192.168.1.125/"
 const dlurl string ="http://192.168.1.125/packs/files/"
+const rbn int  = 6
 
 //help print
 func helper() {
+	//rollback
+	fmt.Printf("|%-6s|%-6s|\n", "rollback", "--rollback trias data to the block height.")
 	fmt.Printf("|%-6s|%-6s|\n", "upgrade", "--Update trias server to lastest version.")
 	fmt.Printf("|%-6s|%-6s|\n", "genesis", "--Generate basic configuration.")
 	fmt.Printf("|%-6s|%-6s|\n", "check", "--Check trias server version at local.")
@@ -19,12 +22,14 @@ func helper() {
 	fmt.Printf("|%-6s|%-6s|\n", "syncdata", "--Whether data is synchronized or not.")
 	fmt.Printf("|%-6s|%-6s|\n", "new", "--Star the new nodes for trias.")
 	fmt.Printf("|%-6s|%-6s|\n", "clean", "--Clear the all files of the local node.")
+	fmt.Printf("|%-6s|%-6s|\n", "cdata", "--Clear the all data of the local node.")
+
 }
 
 //it does not affect local data files at this  Upgrade
 func upgrade() {
 	//clean old bin
-	syncdata()
+	//syncdata()
 	//add user
 	lib.Adduser()
 	fmt.Println(".........................check and star user finished.")
@@ -321,6 +326,17 @@ func syncdata() {
 
 }
 
+func rollback() {
+	rmtx:=lib.CmdBash("rm -rf /txmodule/data/* ")
+	if rmtx =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: rm tx data ")
+	}
+
+	fmt.Println(".........................block state  rsync finished.")
+
+}
+
 func main(){
 	//fmt.Println(len(os.Args))
 	//if len(os.Args)!=2{
@@ -364,6 +380,11 @@ func main(){
 			syncdata()
 			fmt.Println("exec:", string(os.Args[1]))
 			fmt.Println("clean data down,please restart services.")
+		}
+		if string(os.Args[1])=="rollback"{
+			rollback()
+			fmt.Println("exec:", string(os.Args[1]))
+			fmt.Println("data rollback finished, please restart services.")
 		}
 	}
 
