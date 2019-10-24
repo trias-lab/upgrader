@@ -31,6 +31,9 @@ func upgrade() {
 	//clean old bin
 	//syncdata()
 	//add user
+	lib.CmdBash("/etc/init.d/Trias stop")
+	lib.CmdBash("/etc/init.d/BlackBoxClient stop")
+
 	lib.Adduser()
 	fmt.Println(".........................check and star user finished.")
 
