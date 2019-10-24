@@ -360,6 +360,11 @@ func main(){
 			fmt.Println("exec:", string(os.Args[1]))
 			fmt.Println("clean down,please reboot.")
 		}
+		if string(os.Args[1])=="cdata"{
+			syncdata()
+			fmt.Println("exec:", string(os.Args[1]))
+			fmt.Println("clean data down,please restart services.")
+		}
 	}
 
 }
