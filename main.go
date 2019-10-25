@@ -265,6 +265,7 @@ func new() {
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
 	lib.SetTmHostname()
+	genesis()
 	lib.GetBin("/trias/p2p/p2p.json",dlurl+"p2p.json")
 
 	fmt.Println(".........................key bin and set configure finished.")
