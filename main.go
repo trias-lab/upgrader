@@ -104,7 +104,7 @@ func upgrade() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint20")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -359,7 +359,7 @@ func main(){
 		if string(os.Args[1])=="upgrade"{
 			upgrade()
 			fmt.Println("参数:", string(os.Args[1]))
-			fmt.Println("upgrade down, please reboot.")
+			fmt.Println("upgrade down, please restart services.")
 		}
 		if string(os.Args[1])=="genesis"{
 			genesis()
