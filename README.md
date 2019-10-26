@@ -67,6 +67,8 @@ You need to download the tupgrader version at the actual address.
 | clean   | clean nodes bin and data for trias.     | 
 | ------- | ----------------------------------------| 
 
+* [Developing with Trias upgrader](https://github.com/trias-lab/upgrader/blob/master/doc/development.md)
+
 # status
 
 After execution, the relevant logs are recorded in the corresponding directory.
