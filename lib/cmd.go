@@ -110,8 +110,8 @@ func SetIma(){
 		if n,err:=fileObj.Read(buf);err==nil{
 			res:=strings.Contains(string(n),"ima_tcb")
 			if res!=true{
-				//sc:=CmdExec("sed", `-i`, `"/linux\t/s/$/&`, `ima_tcb`, `ima_template=\"ima\"`, `ima_hash=\"sha1\"/g"`, `/boot/grub/grub.cfg`)
-				sc:=CmdExec(`sed -i "/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g" /boot/grub/grub.cfg`)
+				//sc:=CmdExec(`sed -i "/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g" /boot/grub/grub.cfg`)
+				sc:=CmdBash(`sed -i "/linux\t/s/$/& ima_tcb ima_template=\"ima\" ima_hash=\"sha1\"/g" /boot/grub/grub.cfg`)
 				//return sc
 				InfoHander(sc)
 				}
