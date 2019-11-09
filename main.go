@@ -14,7 +14,7 @@ const rbn int  = 6
 //help print
 func helper() {
 	//rollback
-	fmt.Printf("|%-6s|%-6s|\n", "rollback", "--rollback trias data to the block height.")
+	fmt.Printf("|%-6s|%-6s|\n", "rollback", "--rollback trias data to the block height,must be ensure on normal node.")
 	fmt.Printf("|%-6s|%-6s|\n", "upgrade", "--Update trias server to lastest version.")
 	fmt.Printf("|%-6s|%-6s|\n", "genesis", "--Generate basic configuration.")
 	fmt.Printf("|%-6s|%-6s|\n", "check", "--Check trias server version at local.")
@@ -331,13 +331,30 @@ func syncdata() {
 }
 
 func rollback() {
+	lib.CmdBash("/etc/init.d/Trias stop")
+	lib.CmdBash("/etc/init.d/BlackBoxClient stop")
+
 	rmtx:=lib.CmdBash("rm -rf /txmodule/data/* ")
 	if rmtx =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: rm tx data ")
 	}
 
-	fmt.Println(".........................block state  rsync finished.")
+	rbcmd:="tendermint rollback --roll_back.height="+string(rbn)+" --home /trias/.ethermint/tendermint"
+	rbtx:=lib.CmdBash(rbcmd)
+	if rbtx =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: tm rollback No:"+string(rbn))
+	}
+
+	unsafe_set:="tendermint  unsafe_reset_priv_validator  --home /trias/.ethermint/tendermint"
+	unstx:=lib.CmdBash(unsafe_set)
+	if unstx =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: unsafe_reset_priv_validator rollback.")
+	}
+
+	fmt.Println(".........................rollback block to No. "+string(rbn)+" finished.")
 
 }
 
