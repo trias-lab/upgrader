@@ -256,6 +256,10 @@ func new() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
+	//change tendermint is normal;
+	// tendermint10 block upgrage 10;
+	// tendermint20 block upgrage 20;
+	//lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint20")
 	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
@@ -340,6 +344,12 @@ func rollback() {
 		lib.InfoHander("exec faild: rm tx data ")
 	}
 
+	rmabci:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/triascode*")
+	if rmabci =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: rm abci data ")
+	}
+
 	rbcmd:="tendermint rollback --roll_back.height="+string(rbn)+" --home /trias/.ethermint/tendermint"
 	rbtx:=lib.CmdBash(rbcmd)
 	if rbtx =="failed" {
@@ -347,6 +357,7 @@ func rollback() {
 		lib.InfoHander("exec faild: tm rollback No:"+string(rbn))
 	}
 
+	//clean all priv config def=/trias/.ethermint/tendermint/data/priv_validator_state.json
 	unsafe_set:="tendermint  unsafe_reset_priv_validator  --home /trias/.ethermint/tendermint"
 	unstx:=lib.CmdBash(unsafe_set)
 	if unstx =="failed" {
