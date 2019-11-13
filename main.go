@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"upgrader/lib"
 )
 
@@ -350,22 +351,22 @@ func rollback() {
 		lib.InfoHander("exec faild: rm abci data ")
 	}
 
-	rbcmd:="tendermint rollback --roll_back.height="+string(rbn)+" --home /trias/.ethermint/tendermint"
+	rbcmd:="su ubuntu -l -c 'tendermint rollback --roll_back.height="+strconv.Itoa(rbn)+" --home /trias/.ethermint/tendermint'"
 	rbtx:=lib.CmdBash(rbcmd)
 	if rbtx =="failed" {
 		//fmt.Println(err.Error())
-		lib.InfoHander("exec faild: tm rollback No:"+string(rbn))
+		lib.InfoHander("exec faild: tm rollback No:"+strconv.Itoa(rbn))
 	}
 
 	//clean all priv config def=/trias/.ethermint/tendermint/data/priv_validator_state.json
-	unsafe_set:="tendermint  unsafe_reset_priv_validator  --home /trias/.ethermint/tendermint"
+	unsafe_set:="su ubuntu -l -c 'tendermint  unsafe_reset_priv_validator  --home /trias/.ethermint/tendermint'"
 	unstx:=lib.CmdBash(unsafe_set)
 	if unstx =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: unsafe_reset_priv_validator rollback.")
 	}
 
-	fmt.Println(".........................rollback block to No. "+string(rbn)+" finished.")
+	fmt.Println(".........................rollback block to No."+strconv.Itoa(rbn)+" finished.")
 
 }
 
