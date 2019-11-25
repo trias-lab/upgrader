@@ -168,10 +168,12 @@ func genesis() {
 }
 
 func check() {
+	fmt.Println("check the test version!")
 
 }
 
 func ver() {
+	fmt.Println("check the test version!")
 
 }
 
