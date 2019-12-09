@@ -206,7 +206,7 @@ func new() {
 	fmt.Println(".........................apt-get finished.")
 
 	//lib.CmdExec("apt-get", "install", "-y", "openssl", "python3-pip", "8lab-zeromq4 ")
-	installOut:=lib.CmdBash("apt-get install -y libgmp-dev openssl python3-pip 8lab-zeromq4")
+	installOut:=lib.CmdBash("apt-get install -y libgmp-dev openssl python3-pip 8lab-zeromq4 docker-ce")
 
 	if installOut =="failed" {
 		//fmt.Println(err.Error())
