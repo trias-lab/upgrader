@@ -57,3 +57,4 @@ func GetBin(wfile string,url string){
 		}
 	}
 }
+

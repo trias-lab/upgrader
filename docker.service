@@ -10,7 +10,7 @@ Type=notify
 # the default is not to use systemd for cgroups because the delegate issues still
 # exists and systemd currently does not support the cgroup feature set required
 # for containers run by docker
-Environment=INSECURE_REGISTRY=octahub.8lab.cn
+Environment=INSECURE_REGISTRY=octahub.8lab.cn:5000
 ExecStart=/usr/bin/dockerd \
           --insecure-registry $INSECURE_REGISTRY
 ExecReload=/bin/kill -s HUP $MAINPID

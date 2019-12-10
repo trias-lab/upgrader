@@ -147,6 +147,27 @@ func SetTmHostname(){
 	//}
 }
 
+
+//changes blackbox config
+func SetBlackbboxConf(){
+	//get the conncet ip
+	hn:=GetPulicIP()
+	//hn:= strings.Replace(CmdBash("hostname"),"\n","",-1)
+	input,err:=ioutil.ReadFile("/8lab/conf/configure.json")
+	if err!=nil{
+		LogHander("read blackbox config err: ",err)
+	}
+
+	//content:=strings.Replace(string(input),"\n","",-1)
+	content:=string(input)
+	newcontent:=strings.Replace(content,"192.168.1.141",hn,-1)
+
+	errw:=ioutil.WriteFile("/8lab/conf/configure.json",[]byte(newcontent),0)
+	if errw!=nil{
+		LogHander("wirte blackbox config err: ",errw)
+	}
+}
+
 type ReplaceHandle struct {
 	Root    string //根目录
 	OldText string //需要替换的文本

@@ -11,6 +11,7 @@ const soip string ="192.168.1.125"
 const sourl string ="http://192.168.1.125/"
 const dlurl string ="http://192.168.1.125/packs/files/"
 const rbn int  = 6
+const dagimage = "192.168.1.201:5000/streamnet-server:21"
 
 //help print
 func helper() {
@@ -105,7 +106,7 @@ func upgrade() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -114,6 +115,9 @@ func upgrade() {
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
 	lib.SetTmHostname()
+	lib.GetBin("/8lab/conf/configure.json",dlurl+"configure.json")
+	lib.SetBlackbboxConf()
+
 	lib.GetBin("/trias/p2p/p2p.json",dlurl+"p2p.json")
 
 	fmt.Println(".........................key bin and set configure finished.")
@@ -173,7 +177,7 @@ func check() {
 }
 
 func ver() {
-	fmt.Println("check the test version!")
+	fmt.Println("version: ver.black-10")
 
 }
 
@@ -263,7 +267,7 @@ func new() {
 	// tendermint10 block upgrage 10;
 	// tendermint20 block upgrage 20;
 	//lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint20")
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -271,6 +275,10 @@ func new() {
 	lib.GetBin("/8lab/log/pk",dlurl+"pk")
 	lib.GetBin("/8lab/log/vk",dlurl+"vk")
 	lib.GetBin("/trias/.ethermint/tendermint/config/config.toml",dlurl+"config.toml")
+	lib.GetBin("/lib/systemd/system/docker.service",dlurl+"docker.service")
+
+	lib.GetBin("/8lab/conf/configure.json",dlurl+"configure.json")
+	lib.SetBlackbboxConf()
 	lib.SetTmHostname()
 	genesis()
 	lib.GetBin("/trias/p2p/p2p.json",dlurl+"p2p.json")
@@ -281,6 +289,7 @@ func new() {
 	//change chmod and chown
 	//lib.CmdExec("chown", "-R", "ubuntu:ubuntu", "/trias")
 	lib.CmdBash("chown -R ubuntu:ubuntu /trias")
+
 	//lib.CmdExec("chown", "-R", "verfiy:root", "/8lab")
 	lib.CmdBash("chown -R verfiy:root /8lab")
 	//lib.CmdExec("chmod", " +x ", "/usr/local/bin/tendermint")
@@ -302,6 +311,8 @@ func new() {
 	//set start scripts and ima status
 	lib.CmdBash("systemctl enable BlackBoxClientinit.service")
 	lib.CmdBash("systemctl enable Triasinit.service")
+	lib.CmdBash("systemctl enable docker")
+	lib.CmdBash("systemctl restart docker")
 	lib.SetIma()
 	fmt.Println(".........................set start scripts and ima status finished.")
 
@@ -309,6 +320,22 @@ func new() {
 	fmt.Println("new trias node setup finish!")
 }
 
+func AddDagImage() {
+	isdocker:=lib.CmdBash("docker -v")
+	if isdocker=="failed" {
+		println("pls install Docker version 18.06.3-ce")
+		println("apt-get install docker-ec")
+		return
+	}
+	println("Wait a little longer for the first run")
+	lib.CmdBash("systemctl restart docker")
+	//lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
+	lib.CmdBash("docker rm -f streamnet-svr ")
+	//lib.CmdBash("docker run -tid --net host --name streamnet-svr  --restart=always -v /data/iri/conf:/iri/conf -v /data/iri/data:/iri/data octahub.8lab.cn:5000/streamnet-server:21")
+	lib.CmdBash("docker run -tid --net host --name streamnet-svr  --restart=always -v /data/iri/conf:/iri/conf -v /data/iri/data:/iri/data "+dagimage)
+	fmt.Println("check the test version!")
+
+}
 
 func syncdata() {
 	rmtx:=lib.CmdBash("rm -rf /txmodule/data/* ")
@@ -388,6 +415,11 @@ func main(){
 		//}
 	}
 	if len(os.Args)==2{
+		if string(os.Args[1])=="ver"{
+			ver()
+			fmt.Println("参数:", string(os.Args[1]))
+			//fmt.Println("upgrade down, please restart services.")
+		}
 		if string(os.Args[1])=="upgrade"{
 			upgrade()
 			fmt.Println("参数:", string(os.Args[1]))
@@ -398,7 +430,7 @@ func main(){
 			fmt.Println("参数:", string(os.Args[1]))
 		}
 		if string(os.Args[1])=="opts"{
-			genesis()
+			AddDagImage()
 			fmt.Println("参数:", string(os.Args[1]))
 		}
 		if string(os.Args[1])=="new"{
