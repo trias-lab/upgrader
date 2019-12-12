@@ -381,6 +381,10 @@ func syncdata() {
 		lib.InfoHander("exec faild: rm dag image data ")
 	}
 
+	//restart dag services and images
+	lib.CmdBash("systemctl restart streamnet-app")
+	lib.CmdBash("docker restart streamnet-svr ")
+
 	rmtm:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.db ")
 	if rmtm =="failed" {
 		//fmt.Println(err.Error())
