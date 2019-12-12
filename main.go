@@ -373,6 +373,14 @@ func syncdata() {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: rm tx data ")
 	}
+
+	//del dag data
+	rmdag:=lib.CmdBash("rm -rf /data/iri/data/* ")
+	if rmdag =="failed" {
+		//fmt.Println(err.Error())
+		lib.InfoHander("exec faild: rm dag image data ")
+	}
+
 	rmtm:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.db ")
 	if rmtm =="failed" {
 		//fmt.Println(err.Error())
