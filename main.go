@@ -150,6 +150,9 @@ func upgrade() {
 	lib.SetIma()
 	fmt.Println(".........................set start scripts and ima status finished.")
 
+	//add dag images
+	AddDagImage()
+
 	//return ver status
 	fmt.Println("upgrade trias node setup finish!")
 
@@ -316,6 +319,9 @@ func new() {
 	lib.SetIma()
 	fmt.Println(".........................set start scripts and ima status finished.")
 
+	//add dag images
+	AddDagImage()
+
 	//return ver status
 	fmt.Println("new trias node setup finish!")
 }
@@ -328,17 +334,41 @@ func AddDagImage() {
 		return
 	}
 	println("Wait a little longer for the first run")
+
+	_,err:=lib.PathExists("/data/iri/conf")
+	if err!=nil{
+		err := os.Mkdir("/data/iri/conf", os.ModePerm)
+		if err !=nil{
+			lib.GetBin("/data/iri/conf/neighbors",dlurl+"neighbors")
+		}
+	} else {
+		lib.GetBin("/data/iri/conf/neighbors",dlurl+"neighbors")
+	}
+
+	_,dataHas:=lib.PathExists("/data/iri/data")
+	if dataHas!=nil{
+		os.Mkdir("/data/iri/data", os.ModePerm)
+	}
+
 	lib.CmdBash("systemctl restart docker")
 	//lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
 	lib.CmdBash("docker rm -f streamnet-svr ")
 	//lib.CmdBash("docker run -tid --net host --name streamnet-svr  --restart=always -v /data/iri/conf:/iri/conf -v /data/iri/data:/iri/data octahub.8lab.cn:5000/streamnet-server:21")
 	lib.CmdBash("docker run -tid --net host --name streamnet-svr  --restart=always -v /data/iri/conf:/iri/conf -v /data/iri/data:/iri/data "+dagimage)
-	fmt.Println("check the test version!")
+	fmt.Println("Dag server start")
+
+	//dag app install
+	lib.GetBin("/usr/local/bin/streamnet-app",dlurl+"streamnet-app")
+	lib.GetBin("/lib/systemd/system/streamnet-app.service",dlurl+"streamnet-app.service")
+	lib.CmdBash("chmod  +x  /usr/local/bin/streamnet-app")
+	lib.CmdBash("chmod  +x  /lib/systemd/system/streamnet-app.service")
+	lib.CmdBash("systemctl enable streamnet-app")
+	lib.CmdBash("systemctl restart streamnet-app")
 
 }
 
 func syncdata() {
-	rmtx:=lib.CmdBash("rm -rf /txmodule/data/* ")
+	rmtx:=lib.CmdBash("rm -rf /data/txmodule/* ")
 	if rmtx =="failed" {
 		//fmt.Println(err.Error())
 		lib.InfoHander("exec faild: rm tx data ")
