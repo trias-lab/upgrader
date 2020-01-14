@@ -106,7 +106,8 @@ func upgrade() {
 	fmt.Println(".........................unzip structure finished.")
 
 	//download key bin and set configure
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
+	//lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -270,7 +271,7 @@ func new() {
 	// tendermint10 block upgrage 10;
 	// tendermint20 block upgrage 20;
 	//lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint20")
-	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint10")
+	lib.GetBin("/usr/local/bin/tendermint",dlurl+"tendermint")
 	lib.GetBin("/usr/local/bin/trias_accs",dlurl+"trias_accs")
 	lib.GetBin("/usr/local/bin/triascode_app",dlurl+"triascode_app")
 	lib.GetBin("/8lab/blackbox",dlurl+"blackbox")
@@ -368,6 +369,8 @@ func AddDagImage() {
 }
 
 func syncdata() {
+	lib.CmdBash("systemctl stop BlackBoxClientinit.service")
+	lib.CmdBash("systemctl stop Triasinit.service")
 	rmtx:=lib.CmdBash("rm -rf /data/txmodule/* ")
 	if rmtx =="failed" {
 		//fmt.Println(err.Error())
@@ -382,8 +385,8 @@ func syncdata() {
 	}
 
 	//restart dag services and images
-	lib.CmdBash("systemctl restart streamnet-app")
-	lib.CmdBash("docker restart streamnet-svr ")
+	lib.CmdBash("systemctl stop streamnet-app")
+	lib.CmdBash("docker stop streamnet-svr ")
 
 	rmtm:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.db ")
 	if rmtm =="failed" {
