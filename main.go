@@ -374,6 +374,7 @@ func syncdata() {
 	rmtx:=lib.CmdBash("rm -rf /data/txmodule/* ")
 	if rmtx =="failed" {
 		//fmt.Println(err.Error())
+		fmt.Println(".........................data clean faild: rm txmodule data.")
 		lib.InfoHander("exec faild: rm tx data ")
 	}
 
@@ -381,6 +382,7 @@ func syncdata() {
 	rmdag:=lib.CmdBash("rm -rf /data/iri/data/* ")
 	if rmdag =="failed" {
 		//fmt.Println(err.Error())
+		fmt.Println(".........................data clean faild: rm iri data.")
 		lib.InfoHander("exec faild: rm dag image data ")
 	}
 
@@ -391,11 +393,13 @@ func syncdata() {
 	rmtm:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.db ")
 	if rmtm =="failed" {
 		//fmt.Println(err.Error())
+		fmt.Println(".........................data clean faild: rm db data.")
 		lib.InfoHander("exec faild: rm tm data ")
 	}
 	rmwal:=lib.CmdBash("rm -rf /trias/.ethermint/tendermint/data/*.wal ")
 	if rmwal =="failed" {
 		//fmt.Println(err.Error())
+		fmt.Println(".........................data clean faild: rm wal data.")
 		lib.InfoHander("exec faild: rm wal data ")
 	}
 	fmt.Println(".........................data clean finished.")
