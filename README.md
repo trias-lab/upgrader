@@ -45,6 +45,7 @@ exec command args:
   ./tupgrader  syncdata    
   ./tupgrader  new   
   ./tupgrader  clean
+  ./tupgrader  cdata
   ./tupgrader  debug
 
 It is still in use in the test network.
