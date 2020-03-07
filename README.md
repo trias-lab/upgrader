@@ -45,6 +45,7 @@ exec command args:
   ./tupgrader  syncdata    
   ./tupgrader  new   
   ./tupgrader  clean
+  ./tupgrader  debug
 
 It is still in use in the test network.
 You need to download the tupgrader version at the actual address.
