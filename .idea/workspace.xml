@@ -18,22 +18,23 @@
     <session id="-2066194910">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="45" />
+          <entry key="project.closed" value="57" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.19" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.3" value="3" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.3" value="5" />
           <entry key="project.open.time.30" value="3" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.33" value="1" />
-          <entry key="project.open.time.35" value="1" />
+          <entry key="project.open.time.34" value="1" />
+          <entry key="project.open.time.35" value="2" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.37" value="1" />
-          <entry key="project.open.time.38" value="1" />
-          <entry key="project.open.time.39" value="2" />
+          <entry key="project.open.time.38" value="3" />
+          <entry key="project.open.time.39" value="3" />
           <entry key="project.open.time.4" value="3" />
           <entry key="project.open.time.41" value="4" />
           <entry key="project.open.time.43" value="2" />
@@ -49,8 +50,9 @@
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.62" value="1" />
+          <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="46" />
+          <entry key="project.opened" value="57" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -75,13 +77,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="5135" />
+          <entry key="go" value="5156" />
           <entry key="md" value="265" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="5135" />
+          <entry key="Go" value="5156" />
           <entry key="Markdown" value="265" />
         </counts>
       </usages-collector>
@@ -92,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cgen.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+            <state relative-caret-position="286">
+              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -119,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cmd.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1606">
-              <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+            <state relative-caret-position="3234">
+              <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -128,8 +130,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="384" column="75" lean-forward="true" selection-start-line="384" selection-start-column="75" selection-end-line="384" selection-end-column="75" />
+            <state relative-caret-position="352">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <element signature="e#14#64#0" expanded="true" />
               </folding>
@@ -149,8 +151,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/gcoding.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="25" column="29" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="29" />
+            <state relative-caret-position="770">
+              <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
               <folding>
                 <element signature="e#13#41#0" expanded="true" />
               </folding>
@@ -175,8 +177,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/logger.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+            <state relative-caret-position="1694">
+              <caret line="82" column="22" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -241,9 +243,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
+    <option name="x" value="86" />
     <option name="y" value="27" />
-    <option name="width" value="1339" />
+    <option name="width" value="1329" />
     <option name="height" value="1848" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -258,48 +260,6 @@
             <path>
               <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
               <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="script" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="script" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="script" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="systemd" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="script" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="systemd" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="upgrader" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="script" type="462c0819:PsiDirectoryNode" />
-              <item name="trias" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="upgrader" type="b2602c69:ProjectViewProjectNode" />
@@ -367,10 +327,10 @@
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="27" width="1339" height="1848" extended-state="0" />
+    <frame x="86" y="27" width="1329" height="1848" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1933488" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22759159" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -504,8 +464,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/cgen.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+        <state relative-caret-position="286">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -525,8 +485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/cmd.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1606">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+        <state relative-caret-position="3234">
+          <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -539,8 +499,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/gcoding.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="25" column="29" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="29" />
+        <state relative-caret-position="770">
+          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
           <folding>
             <element signature="e#13#41#0" expanded="true" />
           </folding>
@@ -559,15 +519,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/logger.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        <state relative-caret-position="1694">
+          <caret line="82" column="22" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="384" column="75" lean-forward="true" selection-start-line="384" selection-start-column="75" selection-end-line="384" selection-end-column="75" />
+        <state relative-caret-position="352">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <element signature="e#14#64#0" expanded="true" />
           </folding>

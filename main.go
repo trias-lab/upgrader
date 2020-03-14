@@ -7,11 +7,16 @@ import (
 	"upgrader/lib"
 )
 
-const soip string ="192.168.1.125"
-const sourl string ="http://192.168.1.125/"
-const dlurl string ="http://192.168.1.125/packs/files/"
+//const soip string ="192.168.1.125"
+const soip string ="49.233.193.172"
+//const sourl string ="http://192.168.1.125/"
+const sourl string ="http://49.233.193.172/"
+
+//const dlurl string ="http://192.168.1.125/packs/files/"
+const dlurl string ="http://49.233.193.172/packs/files/"
 const rbn int  = 6
-const dagimage = "192.168.1.201:5000/streamnet-server:21"
+//const dagimage = "192.168.1.201:5000/streamnet-server:21"
+const dagimage = "octahub.8lab.cn:5000/streamnet-server:35"
 
 //help print
 func helper() {
