@@ -45,6 +45,8 @@ exec command args:
   ./tupgrader  syncdata    
   ./tupgrader  new   
   ./tupgrader  clean
+  ./tupgrader  cdata
+  ./tupgrader  debug
 
 It is still in use in the test network.
 You need to download the tupgrader version at the actual address.
@@ -66,6 +68,8 @@ You need to download the tupgrader version at the actual address.
 | ------- | ----------------------------------------| 
 | clean   | clean nodes bin and data for trias.     | 
 | ------- | ----------------------------------------| 
+| debug   | debug for trias services checkout.     | 
+| ------- | ----------------------------------------| 
 
 * [Developing with Trias upgrader](https://github.com/trias-lab/upgrader/blob/master/doc/development.md)
 
@@ -76,5 +80,6 @@ After execution, the relevant logs are recorded in the corresponding directory.
 operation2019/09/07 18:10:35 logger.go:98: exec faild: pip3 install 
 operation2019/09/07 18:10:35 logger.go:99: ------------------info-------------------------
 operation2019/09/07 18:10:35 logger.go:36: tar zxvf /trias.tar.gzcmd exec failed!
+operation2019/09/07 18:10:35 logger.go:37: <nil>
 operation2019/09/07 18:10:35 logger.go:37: <nil>
 ```
