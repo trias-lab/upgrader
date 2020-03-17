@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/lib/cgen.go" description="//get request public ip&#10;func get_external() string..." line="33" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5011075f-bcc7-42fd-ba31-81899b5ac4f9" name="Default Changelist" comment="" />
+    <list default="true" id="5011075f-bcc7-42fd-ba31-81899b5ac4f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/mkdocs.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.sh" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +65,7 @@
           <entry key="md" value="5" />
           <entry key="rst" value="3" />
           <entry key="service" value="4" />
-          <entry key="sh" value="2" />
+          <entry key="sh" value="3" />
           <entry key="txt" value="1" />
           <entry key="yml" value="1" />
         </counts>
@@ -73,7 +75,7 @@
           <entry key="Go" value="17" />
           <entry key="HTML" value="1" />
           <entry key="Markdown" value="4" />
-          <entry key="PLAIN_TEXT" value="16" />
+          <entry key="PLAIN_TEXT" value="17" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -120,7 +122,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="22">
@@ -128,6 +130,15 @@
               <folding>
                 <element signature="e#14#64#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mkdocs.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -226,6 +237,7 @@
         <option value="$PROJECT_DIR$/lib/gcoding.go" />
         <option value="$PROJECT_DIR$/ccs.go" />
         <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/mkdocs.sh" />
       </list>
     </option>
   </component>
@@ -582,6 +594,13 @@
           <folding>
             <element signature="e#14#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mkdocs.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
         </state>
       </provider>
     </entry>
