@@ -17,7 +17,7 @@ fi
 
 DOCERSC=`which godoc`
 if [ -z "$DOCERSC" ];then
-    echo "pls,setup go parkage! version >1.11" 
+    echo "pls,setup go parkage! version =1.11"
     exit 1
 fi
 
