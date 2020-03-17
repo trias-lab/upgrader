@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/lib/cgen.go" description="//get request public ip&#10;func get_external() string..." line="33" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5011075f-bcc7-42fd-ba31-81899b5ac4f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5011075f-bcc7-42fd-ba31-81899b5ac4f9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +235,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="68" />
     <option name="y" value="27" />
     <option name="width" value="1370" />
@@ -330,7 +328,7 @@
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-    <frame x="68" y="27" width="1370" height="1879" extended-state="1" />
+    <frame x="68" y="27" width="1370" height="1879" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23187311" />
