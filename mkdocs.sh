@@ -50,11 +50,14 @@ function Set_doc(){
 function Set_doc14(){
     #dirilist=`find . -type d | while read dir; do echo $dir; done |grep -v \.git |grep -v .idea |grep -v doc`
     godoc -url /pkg/${gitname} >./docs/index.html
+    linkcss='<link type="text/css" rel="stylesheet" href="/'${gitname}'/style.css">'
+    echo $linkcss >>./docs/index.html
+
     for i in  `find . -type d |grep -v \.git |grep -v .idea |grep -v doc |sed 's/..//' |awk 'NR!=1'`
     do
     mkdir -p docs/${i}
     godoc -url /pkg/${gitname}/${i} >./docs/${i}/index.html
-    linkcss='<link type="text/css" rel="stylesheet" href="/'${gitname}'/style.css">'
+    #linkcss='<link type="text/css" rel="stylesheet" href="/'${gitname}'/style.css">'
     echo $linkcss >>./docs/$i/index.html
     #if [ -d $basepath"/"${i} ]; then
     #    read_dir $basepath"/"${i}
