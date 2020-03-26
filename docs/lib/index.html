@@ -1,3 +1,62 @@
+using GOPATH mode
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>lib - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.14.1";</script>
+<script src="/lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/pkg/">GoDoc</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package lib
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
 <!--
 	Copyright 2009 The Go Authors. All rights reserved.
 	Use of this source code is governed by a BSD-style
@@ -9,11 +68,10 @@
 	them to conflict with generated attributes (some of which
 	correspond to Go identifiers).
 -->
-<link rel="stylesheet" href="/upgrader/style.css">
 
-<script type='text/javascript'>
-	document.ANALYSIS_DATA = ;
-	document.CALLGRAPH = ;
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
 	</script>
 
 	
@@ -152,49 +210,14 @@
 		</div><!-- .expanded -->
 		</div><!-- #pkg-index -->
 
-		<div id="pkg-callgraph" class="toggle" style="display: none">
-		<div class="collapsed">
-			<h2 class="toggleButton" title="Click to show Internal Call Graph section">Internal call graph ▹</h2>
-		</div> <!-- .expanded -->
-		<div class="expanded">
-			<h2 class="toggleButton" title="Click to hide Internal Call Graph section">Internal call graph ▾</h2>
-			<p>
-			  In the call graph viewer below, each node
-			  is a function belonging to this package
-			  and its children are the functions it
-			  calls&mdash;perhaps dynamically.
-			</p>
-			<p>
-			  The root nodes are the entry points of the
-			  package: functions that may be called from
-			  outside the package.
-			  There may be non-exported or anonymous
-			  functions among them if they are called
-			  dynamically from another package.
-			</p>
-			<p>
-			  Click a node to visit that function's source code.
-			  From there you can visit its callers by
-			  clicking its declaring <code>func</code>
-			  token.
-			</p>
-			<p>
-			  Functions may be omitted if they were
-			  determined to be unreachable in the
-			  particular programs or tests that were
-			  analyzed.
-			</p>
-			<!-- Zero means show all package entry points. -->
-			<ul style="margin-left: 0.5in" id="callgraph-0" class="treeview"></ul>
-		</div>
-		</div> <!-- #pkg-callgraph -->
+		
 
 		
 		
 		
 			
 			
-			<h2 id="AddSource">func <a href="/src/target/cmd.go?s=1271:1298#L70">AddSource</a>
+			<h2 id="AddSource">func <a href="/src/upgrader/lib/cmd.go?s=1271:1298#L70">AddSource</a>
 				<a class="permalink" href="#AddSource">&#xb6;</a>
 				
 				
@@ -207,7 +230,7 @@
 		
 			
 			
-			<h2 id="Adduser">func <a href="/src/target/cgen.go?s=92:106#L3">Adduser</a>
+			<h2 id="Adduser">func <a href="/src/upgrader/lib/cgen.go?s=92:106#L3">Adduser</a>
 				<a class="permalink" href="#Adduser">&#xb6;</a>
 				
 				
@@ -220,7 +243,7 @@
 		
 			
 			
-			<h2 id="Chmod">func <a href="/src/target/cmd.go?s=1079:1108#L60">Chmod</a>
+			<h2 id="Chmod">func <a href="/src/upgrader/lib/cmd.go?s=1079:1108#L60">Chmod</a>
 				<a class="permalink" href="#Chmod">&#xb6;</a>
 				
 				
@@ -233,7 +256,7 @@
 		
 			
 			
-			<h2 id="CmdBash">func <a href="/src/target/cmd.go?s=323:355#L17">CmdBash</a>
+			<h2 id="CmdBash">func <a href="/src/upgrader/lib/cmd.go?s=323:355#L17">CmdBash</a>
 				<a class="permalink" href="#CmdBash">&#xb6;</a>
 				
 				
@@ -246,7 +269,7 @@
 		
 			
 			
-			<h2 id="CmdExec">func <a href="/src/target/cmd.go?s=83:118#L1">CmdExec</a>
+			<h2 id="CmdExec">func <a href="/src/upgrader/lib/cmd.go?s=83:118#L1">CmdExec</a>
 				<a class="permalink" href="#CmdExec">&#xb6;</a>
 				
 				
@@ -259,7 +282,7 @@
 		
 			
 			
-			<h2 id="CmdStr">func <a href="/src/target/cmd.go?s=531:565#L29">CmdStr</a>
+			<h2 id="CmdStr">func <a href="/src/upgrader/lib/cmd.go?s=531:565#L29">CmdStr</a>
 				<a class="permalink" href="#CmdStr">&#xb6;</a>
 				
 				
@@ -272,7 +295,7 @@
 		
 			
 			
-			<h2 id="Divide">func <a href="/src/target/logger.go?s=2583:2656#L110">Divide</a>
+			<h2 id="Divide">func <a href="/src/upgrader/lib/logger.go?s=2583:2656#L110">Divide</a>
 				<a class="permalink" href="#Divide">&#xb6;</a>
 				
 				
@@ -288,7 +311,7 @@
 		
 			
 			
-			<h2 id="GetBin">func <a href="/src/target/gcoding.go?s=307:343#L14">GetBin</a>
+			<h2 id="GetBin">func <a href="/src/upgrader/lib/gcoding.go?s=307:343#L14">GetBin</a>
 				<a class="permalink" href="#GetBin">&#xb6;</a>
 				
 				
@@ -301,7 +324,7 @@
 		
 			
 			
-			<h2 id="GetExternal">func <a href="/src/target/cgen.go?s=760:785#L25">GetExternal</a>
+			<h2 id="GetExternal">func <a href="/src/upgrader/lib/cgen.go?s=760:785#L25">GetExternal</a>
 				<a class="permalink" href="#GetExternal">&#xb6;</a>
 				
 				
@@ -317,7 +340,7 @@ get request public ip
 		
 			
 			
-			<h2 id="GetIntranetIp">func <a href="/src/target/cgen.go?s=1027:1047#L37">GetIntranetIp</a>
+			<h2 id="GetIntranetIp">func <a href="/src/upgrader/lib/cgen.go?s=1027:1047#L37">GetIntranetIp</a>
 				<a class="permalink" href="#GetIntranetIp">&#xb6;</a>
 				
 				
@@ -333,7 +356,7 @@ get all local listen ip
 		
 			
 			
-			<h2 id="GetPulicIP">func <a href="/src/target/cgen.go?s=1455:1479#L58">GetPulicIP</a>
+			<h2 id="GetPulicIP">func <a href="/src/upgrader/lib/cgen.go?s=1455:1479#L58">GetPulicIP</a>
 				<a class="permalink" href="#GetPulicIP">&#xb6;</a>
 				
 				
@@ -349,7 +372,7 @@ in order of dns to ensure public ip
 		
 			
 			
-			<h2 id="InfoHander">func <a href="/src/target/logger.go?s=1604:1632#L67">InfoHander</a>
+			<h2 id="InfoHander">func <a href="/src/upgrader/lib/logger.go?s=1604:1632#L67">InfoHander</a>
 				<a class="permalink" href="#InfoHander">&#xb6;</a>
 				
 				
@@ -362,7 +385,7 @@ in order of dns to ensure public ip
 		
 			
 			
-			<h2 id="LogHander">func <a href="/src/target/logger.go?s=49:86#L1">LogHander</a>
+			<h2 id="LogHander">func <a href="/src/upgrader/lib/logger.go?s=49:86#L1">LogHander</a>
 				<a class="permalink" href="#LogHander">&#xb6;</a>
 				
 				
@@ -375,7 +398,7 @@ in order of dns to ensure public ip
 		
 			
 			
-			<h2 id="PathExists">func <a href="/src/target/gcoding.go?s=101:143#L1">PathExists</a>
+			<h2 id="PathExists">func <a href="/src/upgrader/lib/gcoding.go?s=101:143#L1">PathExists</a>
 				<a class="permalink" href="#PathExists">&#xb6;</a>
 				
 				
@@ -391,7 +414,7 @@ in order of dns to ensure public ip
 		
 			
 			
-			<h2 id="SetBlackbboxConf">func <a href="/src/target/cmd.go?s=3243:3266#L142">SetBlackbboxConf</a>
+			<h2 id="SetBlackbboxConf">func <a href="/src/upgrader/lib/cmd.go?s=3243:3266#L142">SetBlackbboxConf</a>
 				<a class="permalink" href="#SetBlackbboxConf">&#xb6;</a>
 				
 				
@@ -407,7 +430,7 @@ changes blackbox config
 		
 			
 			
-			<h2 id="SetIma">func <a href="/src/target/cmd.go?s=1808:1821#L93">SetIma</a>
+			<h2 id="SetIma">func <a href="/src/upgrader/lib/cmd.go?s=1808:1821#L93">SetIma</a>
 				<a class="permalink" href="#SetIma">&#xb6;</a>
 				
 				
@@ -423,7 +446,7 @@ func SetIma() string{
 		
 			
 			
-			<h2 id="SetTmHostname">func <a href="/src/target/cmd.go?s=2415:2435#L114">SetTmHostname</a>
+			<h2 id="SetTmHostname">func <a href="/src/upgrader/lib/cmd.go?s=2415:2435#L114">SetTmHostname</a>
 				<a class="permalink" href="#SetTmHostname">&#xb6;</a>
 				
 				
@@ -439,7 +462,7 @@ changes tm config
 		
 			
 			
-			<h2 id="TarZxvf">func <a href="/src/target/cmd.go?s=885:916#L50">TarZxvf</a>
+			<h2 id="TarZxvf">func <a href="/src/upgrader/lib/cmd.go?s=885:916#L50">TarZxvf</a>
 				<a class="permalink" href="#TarZxvf">&#xb6;</a>
 				
 				
@@ -453,7 +476,7 @@ changes tm config
 		
 			
 			
-			<h2 id="DivideError">type <a href="/src/target/logger.go?s=2283:2336#L94">DivideError</a>
+			<h2 id="DivideError">type <a href="/src/upgrader/lib/logger.go?s=2283:2336#L94">DivideError</a>
 				<a class="permalink" href="#DivideError">&#xb6;</a>
 				
 				
@@ -479,7 +502,7 @@ changes tm config
 
 			
 				
-				<h3 id="DivideError.Error">func (*DivideError) <a href="/src/target/logger.go?s=2363:2400#L100">Error</a>
+				<h3 id="DivideError.Error">func (*DivideError) <a href="/src/upgrader/lib/logger.go?s=2363:2400#L100">Error</a>
 					<a class="permalink" href="#DivideError.Error">&#xb6;</a>
 					
 					
@@ -496,7 +519,7 @@ changes tm config
 		
 			
 			
-			<h2 id="ReplaceHandle">type <a href="/src/target/cmd.go?s=3767:3895#L161">ReplaceHandle</a>
+			<h2 id="ReplaceHandle">type <a href="/src/upgrader/lib/cmd.go?s=3767:3895#L161">ReplaceHandle</a>
 				<a class="permalink" href="#ReplaceHandle">&#xb6;</a>
 				
 				
@@ -521,7 +544,7 @@ changes tm config
 
 			
 				
-				<h3 id="ReplaceHandle.DoWrok">func (*ReplaceHandle) <a href="/src/target/cmd.go?s=3897:3935#L167">DoWrok</a>
+				<h3 id="ReplaceHandle.DoWrok">func (*ReplaceHandle) <a href="/src/upgrader/lib/cmd.go?s=3897:3935#L167">DoWrok</a>
 					<a class="permalink" href="#ReplaceHandle.DoWrok">&#xb6;</a>
 					
 					
@@ -541,3 +564,20 @@ changes tm config
 
 
 
+
+
+<div id="footer">
+Build version go1.14.1.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+<a href="/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
+<link type="text/css" rel="stylesheet" href="/upgrader/style.css">
