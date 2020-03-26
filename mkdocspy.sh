@@ -35,7 +35,9 @@ function Set_index(){
     if [ -d $gitname ]; then
 	pydoc3 -w ${gitname}
         mv ${gitname}.html $basepath"/"docs/index.html
+        #mv ${gitname}.html $basepath"/"docs/main.html
 	sed -i 's@'${gitname}'\.@@'g $basepath"/"docs/index.html
+	cp -av $basepath"/"docs/index.html $basepath"/"docs/main.html
     #    mkdir ./docs/${basepath}
     #    godoc -all  -html ./ >./docs/index.html
     fi
