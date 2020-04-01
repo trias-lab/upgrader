@@ -82,4 +82,8 @@ operation2019/09/07 18:10:35 logger.go:99: ------------------info---------------
 operation2019/09/07 18:10:35 logger.go:36: tar zxvf /trias.tar.gzcmd exec failed!
 operation2019/09/07 18:10:35 logger.go:37: <nil>
 operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+operation2019/09/07 18:10:35 logger.go:37: <nil>
+
+operation2019/09/07 18:10:35 logger.go:37: <nil>
 ```
