@@ -7,7 +7,7 @@ Flask-RESTful==0.3.7
 python-gflags==3.1.2
 leveldb==0.194
 requests==2.19.0
-urllib3==1.23
+urllib3==1.26.5
 idna==2.7
 chardet==3.0.4
 certifi==2018.4.16
