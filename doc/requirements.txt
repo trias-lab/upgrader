@@ -1,5 +1,5 @@
 zmq==0.0.0
-Django==2.2.3
+Django==2.2.24
 ntplib==0.3.3
 Flask==1.1.1
 Flask-Cors==3.0.8
